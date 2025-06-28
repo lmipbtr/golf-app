@@ -11,7 +11,7 @@ import math
 import sys
 
 with st.container(border=True):
-    st.write("Choose an Score History file by clicking Browse Files or dragging and dropping a file into shaded area")
+    st.write("Choose a Score History file by clicking Browse Files or dragging and dropping a file into shaded area")
     uploaded_file1 = st.file_uploader("Score History File")
 if uploaded_file1 is not None:
     df_score_history = pd.read_excel(uploaded_file1, sheet_name='Score')
