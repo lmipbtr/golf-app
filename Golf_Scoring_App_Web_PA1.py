@@ -220,7 +220,7 @@ st.pyplot(fig)
 st.metric(label='Number of rounds scored:',value=str(df_round_summary.shape[0]))
 st.metric(label='Average Stableford Points per round:',value=str(round(average_points,1)))
 st.metric(label='Latest GA Handicap:',value=str(ga_hcap))
-st.metric(label='Last rounds Daily Handicap:',value=str(daily_hcap)+' ('+tees+' '+course+')'))
+st.metric(label='Last rounds Daily Handicap:',value=str(daily_hcap)+' ('+tees+' '+course+')')
 
 hide_comment ='''results_file=filepath+"Handicap Results.txt"
 
