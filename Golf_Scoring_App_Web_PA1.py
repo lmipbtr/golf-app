@@ -203,8 +203,8 @@ for i in range (rounds):
     #print(branch)    
 
 df_round_summary = df_round_summary.set_index(['Date'])
-previous_GA_hcap = round(df_round_summary['New GA Handicap'].iloc[-2],1)
-    
+previous_GA_hcap = df_round_summary['New GA Handicap'].iloc[-2]
+
 st.dataframe(df_round_summary)
     
 average_points = df_round_summary['Stableford Points'].mean()
@@ -220,7 +220,7 @@ st.pyplot(fig)
 
 st.metric(label='Number of rounds scored:',value=str(df_round_summary.shape[0]))
 st.metric(label='Average Stableford Points per round:',value=str(round(average_points,1)))
-st.metric(label='Latest GA Handicap:',value=str(ga_hcap), delta=(ga_hcap - previous_GA_hcap), delta_color="inverse")
+st.metric(label='Latest GA Handicap:',value=str(ga_hcap), delta=round((ga_hcap - previous_GA_hcap),1) delta_color="inverse"))
 st.metric(label='Last rounds Daily Handicap:',value=str(daily_hcap)+' ('+tees+' '+course+')')
 
 hide_comment ='''results_file=filepath+"Handicap Results.txt"
