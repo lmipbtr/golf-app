@@ -203,7 +203,7 @@ for i in range (rounds):
     #print(branch)    
 
 df_round_summary = df_round_summary.set_index(['Date'])
-previous_GA_hcap = df_round_summary['New GA Handicap'].iloc[-2]
+previous_GA_hcap = round(df_round_summary['New GA Handicap'].iloc[-2],1)
     
 st.dataframe(df_round_summary)
     
