@@ -19,15 +19,18 @@ if uploaded_file1 is not None:
 
     df_artificial_rounds = pd.read_excel(uploaded_file1, sheet_name='Artificial Rounds')
     df_artificial_rounds['Date'] = pd.to_datetime(df_artificial_rounds['Date'],format='%d/%m/%Y')
-
+else:
+    st.stop()
+    
 with st.container(border=True):
     st.write("Choose a Course List file by clicking Browse Files or dragging and dropping a file into shaded area")
     uploaded_file2 = st.file_uploader("Course Details File")
 if uploaded_file2 is not None:
     df_course_ratings = pd.read_excel(uploaded_file2, sheet_name='Ratings')
     df_course_par_index = pd.read_excel(uploaded_file2,sheet_name='Par_Index')
-
-
+else:
+    st.stop()
+    
 min_date=(min(df_score_history['Date']) - datetime.timedelta(days=1))#.strftime('%Y-%m-%d')
 total_score = 0
 total_points = 0
