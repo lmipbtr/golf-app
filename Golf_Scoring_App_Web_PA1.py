@@ -226,6 +226,25 @@ st.metric(label='Average Stableford Points per round:',value=str(round(average_p
 st.metric(label='Latest GA Handicap:',value=str(ga_hcap), delta=round((ga_hcap - previous_GA_hcap),1), delta_color="inverse")
 st.metric(label='Last rounds Daily Handicap:',value=str(daily_hcap)+' ('+tees+' '+course+')')
 
+cols_to_convert = ['Hole1','Hole2','Hole3','Hole4','Hole5','Hole6','Hole7','Hole8','Hole9','Hole10','Hole11','Hole12','Hole13','Hole14','Hole15','Hole16','Hole17','Hole18']
+df_score_history1=df_score_history.copy()
+df_score_history1[cols_to_convert]=df_score_history1[cols_to_convert].apply(pd.to_numeric,errors='coerce')
+table1 = pd.pivot_table(df_score_history1, values=df_score_history1.iloc[:, -18:], index=['Course','Tees'],aggfunc="mean", sort = False)
+table1['Total'] = table1.iloc[:, -18:].sum(axis=1)
+table1=table1.round(1)
+st.write('Average strokes per hole, excluding pick-ups')
+st.dataframe(table1)
+table2 = pd.pivot_table(df_score_history1, values=df_score_history1.iloc[:, -18:], index=['Course','Tees'],aggfunc="min", sort = False)
+table2['Total'] = table2.iloc[:, -18:].sum(axis=1)
+#table2=table2.astype(int)#.round(0)
+st.write('Lowest strokes per hole')
+st.dataframe(table2)
+table3 = pd.pivot_table(df_score_history1, values=df_score_history1.iloc[:, -18:], index=['Course','Tees'],aggfunc="max", sort = False)
+table3['Total'] = table3.iloc[:, -18:].sum(axis=1)
+#table3=table3.astype(int)#.round(0)
+st.write('Most strokes per hole, excluding pick-ups')
+st.dataframe(table3)
+
 hide_comment ='''results_file=filepath+"Handicap Results.txt"
 
 def show_message(msg1):
